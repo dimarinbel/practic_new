@@ -30,31 +30,41 @@ function compareFilms(a, b){
 
 
 
-const   adv = document.querySelector('.promo__adv'),
+const   //adv = document.querySelector('.promo__adv'),
+        adv = document.querySelectorAll('.promo__adv img'),
         genre = document.querySelector('.promo__genre'),
-        // backPromo = document.getElementsByClassName('promo__bg');
-        itemList = document.querySelectorAll('.promo__interactive-item');
+        backPromo = document.querySelector('.promo__bg'),
+        // itemList = document.querySelectorAll('.promo__interactive-item');
+        itemList = document.querySelector('.promo__interactive-list');
 
 
+adv.forEach((item) => {
+    item.remove();
+});
+
+// adv.remove();
+
+backPromo.style.backgroundImage = "URL('img/bg.jpg')";
 
 
-adv.remove();
+movieDB.movies.sort(compareFilms);
 
-movieDB.movies.sort();
+// for (let i = 0; i < movieDB.movies.length; i++) {
+//         itemList[i].textContent = `${i + 1}. ${movieDB.movies[i]}`;
+//     }
 
-for (let i = 0; i < movieDB.movies.length; i++) {
-    // console.log('dfgbdfg');
-    // console.log(itemList[i]);
-        itemList[i].textContent = `${i + 1}. ${movieDB.movies[i]}`;
-    }
+// movieDB.movies.forEach((film, i) => {
+//     itemList[i].textContent = `${i + 1}. ${film}`;
+// });
+
+itemList.innerHTML = "";
+movieDB.movies.forEach((film, i) => {
+    itemList.innerHTML += `<li class="promo__interactive-item">${i + 1}. ${film}
+    <div class="delete"></div>
+    </li>`;
+});
 
 
-// backPromo.style.background = "../img/bg.jpg";
-
-// genre.replaceChild(genreNew, genre);
-
-// genre.replaceWith(genreNew);
-
-genre.innerHTML = "ДРАМА";
+genre.textContent = "ДРАМА";
 
 
